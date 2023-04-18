@@ -178,7 +178,7 @@ class Libgenapi(object):
 
         def search(self, search_term="", journal_title_issn="", volume_year="",issue="", pages="", number_results=25 ):
             g = grab.Grab()
-            request={"s":search_term, "journalid":journal_title_issn, "v":volume_year, "i":issue, "p":pages, "redirect":"0"}
+            request={"req":search_term, "journalid":journal_title_issn, "v":volume_year, "i":issue, "p":pages, "redirect":"0"}
             if sys.version_info[0] < 3:
                 url = self.url+"?"+ \
                         urllib.urlencode(request)
@@ -213,8 +213,6 @@ class Libgenapi(object):
                     # Random delay because if you ask a lot of pages,your ip might get blocked.
                     time.sleep(random.randint(250, 1000)/1000.0)
             return search_result[:number_results]
-
-
     class __Fiction(object):
         def __init__(self,url):
             self.url=url
@@ -256,7 +254,7 @@ class Libgenapi(object):
         def search(self, search_term="", pages="", number_results=25 ):
             # TODO: Add missing search parameters.
             g = grab.Grab()
-            request={"s":search_term, "p":pages}
+            request={"req":search_term, "p":pages}
             if sys.version_info[0] < 3:
                 url = self.url+"?"+ \
                         urllib.urlencode(request)
@@ -339,7 +337,7 @@ class Libgenapi(object):
         def search(self, search_term="", pages="", number_results=25 ):
             # TODO: Add Batch search for comics.
             g = grab.Grab()
-            request={"s":search_term, "p":pages}
+            request={"req":search_term, "p":pages}
             if sys.version_info[0] < 3:
                 url = self.url+"?"+ \
                         urllib.urlencode(request)
